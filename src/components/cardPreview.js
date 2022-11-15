@@ -1,12 +1,16 @@
 import React from 'react';
 
 export function CardPreview(props) {
+  const [isFront, setisFront] = React.useState(true) // state methode
+  function handleCardFlip(){
+    setisFront(!isFront)
+  }
     return (
-        <div className="tile">
-        <h4 className="cardTerm">{props.term}</h4>
+        <div className={`tile ${isFront ? "" : 'back'}`}>
+        <h4 className="cardTerm">{isFront ? props.term: props.definition}</h4>
         <div className="cardButtons">
-          <button type="button" className="tertiary">
-            Show Back
+          <button type="button" className="tertiary" onClick={handleCardFlip}>
+            {isFront ? 'Show Back' : 'Show Front'}
             </button>
           <div><button type="button" className="secondary">
             Edit
